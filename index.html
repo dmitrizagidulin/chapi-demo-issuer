@@ -45,39 +45,46 @@
 </div>
 <script>
   const testCredential = {
+  "@context": "https://www.w3.org/2018/credentials/v1",
+  "type": "VerifiablePresentation",
+  "verifiableCredential": {
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
-      "https://www.w3.org/2018/credentials/examples/v1"
+      "https://w3id.org/security/suites/ed25519-2020/v1",
+      "https://w3id.org/dcc/v1"
     ],
-    "type": "VerifiablePresentation",
-    "verifiableCredential": [{
-      "@context": [
-        "https://www.w3.org/2018/credentials/v1",
-        "https://www.w3.org/2018/credentials/examples/v1"
-      ],
-      "id": "http://example.edu/credentials/1872",
-      "type": ["VerifiableCredential", "UniversityDegreeCredential"],
-      "issuer": "https://example.edu/issuers/565049",
-      "issuanceDate": "2010-01-01T19:73:24Z",
-      "credentialSubject": {
-        "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-        "alumniOf": {
-          "id": "did:example:c276e12ec21ebfeb1f712ebc6f1",
-          "name": {
-            "@value": "Example University",
-            "@language": "en"
-          }
-        }
-      },
-      "proof": {
-        "type": "Ed25519Signature2018",
-        "created": "2017-06-18T21:19:10Z",
-        "proofPurpose": "assertionMethod",
-        "verificationMethod": "https://example.edu/issuers/keys/1",
-        "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..TCYt5XsITJX1CxPCT8yAV-TVkIEq_PbChOMqsLfRoPsnsgw5WEuts01mq-pQy7UJiN5mgRxD-WUcX16dUEMGlv50aqzpqh4Qktb3rk-BuQy72IFLOqV0G_zS245-kronKb78cPN25DGlcTwLtjPAYuNzVBAh4vGHSrQyHUdBBPM"
+    "id": "https://cred.127.0.0.1.nip.io/api/issuance/12",
+    "type": [
+      "VerifiableCredential",
+      "Assertion"
+    ],
+    "issuer": {
+      "id": "did:key:z6Mktpn6cXks1PBKLMgZH2VaahvCtBMF6K8eCa7HzrnuYLZv",
+      "name": "Georgia Institute of Technology",
+      "url": "https://c21u.gatech.edu",
+      "image": "https://iris.isr.umich.edu/wp-content/uploads/2021/10/GAtech-square-300x300.png"
+    },
+    "issuanceDate": "2022-01-01T00:00:00.000Z",
+    "credentialSubject": {
+      "name": "GT Buzz",
+      "hasCredential": {
+        "name": "I.C.E.B.E.R.G.: an Intercultural Program",
+        "type": [
+          "EducationalOccupationalCredential"
+        ],
+        "description": "This credential certifies participation in the I.C.E.B.E.R.G. (Inspiring Cross-cultural Experiences By Engaging Ramblers at Georgia Tech) program, offered by the Georgia Tech Office of International Education.",
+        "competencyRequired": "(1) Attend three workshops on the topics of culture and self-awareness, perception and values, and the Culture Map. \n(2) Complete a culminating self-assessment on the skills gained throughout the I.C.E.B.E.R.G. program."
       }
-    }]
-  };
+    },
+    "proof": {
+      "type": "Ed25519Signature2020",
+      "created": "2021-01-01T00:00:00Z",
+      "verificationMethod": "did:key:z6Mktpn6cXks1PBKLMgZH2VaahvCtBMF6K8eCa7HzrnuYLZv#z6Mktpn6cXks1PBKLMgZH2VaahvCtBMF6K8eCa7HzrnuYLZv",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z2rp7VymXA5bVnetLSePmRggEE7M7XpHpxe5LvNXQ8mwTYZbJSFYuHqM8Adb75dpUGbaP83RWzYDmNJGLfibvnYHy"
+    }
+  }
+};
   // ^ Note that:
   // 1. The Verifiable Credential is signed, and wrapped in a VerifiablePresentation.
   // 2. The wrapping VerifiablePresentation is not signed.
